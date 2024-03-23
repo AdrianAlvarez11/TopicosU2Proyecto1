@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="GuiaEpisodios.Views.EpisodioView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GuiaEpisodios.Views" xmlns:viewmodels="clr-namespace:GuiaEpisodios.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:SerieViewModel}"
+             mc:Ignorable="d" 
+             d:Height="auto" d:Width="auto" d:FontFamily="Microsoft YaHei UI" >
+    <Border BorderThickness="0,0,0,1" BorderBrush="Black">
+        <DockPanel>
+
+            <Label Foreground="LightGray" Margin="10,0,0,0" VerticalAlignment="Center" Content="{Binding NumeroEpisodio}"></Label>
+            
+            <Image Margin="10" Height="120" Source="{Binding Imagen}"></Image>
+            
+            
+            <TextBlock Margin="10" DockPanel.Dock="Right" Foreground="LightGray" VerticalAlignment="Center">
+                <Run Text="{Binding Duracion}"></Run>
+                <Run Text="min"></Run>
+            </TextBlock>
+            
+            <TextBlock Width="700" Padding="10" Margin="5" VerticalAlignment="Center" TextWrapping="Wrap">
+            <Run FontWeight="Bold" FontSize="14" Foreground="White" Text="{Binding Titulo}"></Run>
+             <LineBreak />
+            <Run Foreground="LightGray" Text="{Binding Descripcion}"></Run>
+            </TextBlock>
+
+        </DockPanel>
+    </Border>
+
+</UserControl>

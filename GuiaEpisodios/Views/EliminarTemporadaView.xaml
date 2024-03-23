@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="GuiaEpisodios.Views.EliminarTemporadaView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GuiaEpisodios.Views" xmlns:viewmodels="clr-namespace:GuiaEpisodios.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:SerieViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" d:FontFamily="Microsoft YaHei UI" Background="#50000000">
+    
+    <Border Padding="5" BorderThickness="2" BorderBrush="Black" Background="White" Width="300" Height="300" Margin="10">
+        <DockPanel Margin="10">
+
+            <TextBlock FontSize="20" TextWrapping="Wrap" TextAlignment="Center" DockPanel.Dock="Top">
+                <Run>¿Quieres</Run>
+                <Run Foreground="Red">eliminar</Run>
+                <Run >la temporada seleccionada y todos sus episodios?</Run>
+            </TextBlock>
+
+            <WrapPanel Margin="0,10,0,0" DockPanel.Dock="Bottom" HorizontalAlignment="Center">
+                <Button Padding="15,5" Margin="5" Command="{Binding EliminarTemporadaCommand}">Confirmar</Button>
+                <Button Padding="15,5" Margin="5" Command="{Binding CambiarVistaCommand}" CommandParameter="{x:Static viewmodels:Vistas.Inicio}">Cancelar</Button>
+            </WrapPanel>
+
+            <Image Height="130" Source="https://www.pngall.com/wp-content/uploads/5/Walter-White-Breaking-Bad-PNG.png"></Image>
+
+            
+        </DockPanel>
+    </Border>
+</UserControl>

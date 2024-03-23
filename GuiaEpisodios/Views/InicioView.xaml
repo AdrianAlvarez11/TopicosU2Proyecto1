@@ -1,0 +1,132 @@
+﻿<UserControl x:Class="GuiaEpisodios.Views.Inicio"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewmodels="clr-namespace:GuiaEpisodios.ViewModels" xmlns:local="clr-namespace:GuiaEpisodios.Views" d:DataContext="{d:DesignInstance Type=viewmodels:SerieViewModel}"
+             mc:Ignorable="d" x:Name="userControlInicio"
+             d:DesignHeight="600" d:DesignWidth="800" d:FontFamily="Microsoft YaHei UI">
+    
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Padding" Value="10"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+            <Setter Property="Foreground" Value="LightGray"></Setter>
+            
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="5"></Setter>
+            <Setter Property="Foreground" Value="LightGray"></Setter>
+            <Setter Property="Background" Value="#0D3E10"></Setter>
+
+        </Style>
+        
+        <DataTemplate x:Key="TemporadaTemplate">
+            <local:TemporadaView></local:TemporadaView>
+        </DataTemplate>
+
+
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="True">
+        <DockPanel>
+        
+        <UniformGrid Height="450" DockPanel.Dock="Top" Columns="2">
+            
+            <Image VerticalAlignment="Bottom" Margin="0,10,0,0"  Source="brbad.png"></Image>
+            
+            <StackPanel Margin="10,10,25,0" VerticalAlignment="Center">
+                 
+                <TextBlock Foreground="White" FontWeight="Bold" FontSize="20"> Un profesor de química con cáncer terminal se asocia con un exalumno suyo para fabricar y vender metanfetamina a fin de que su familia no pase apuros económicos.</TextBlock>
+
+                <TextBlock>
+                    <Run Foreground="White">Creado por:</Run>
+                    <Run>Vince Gilligan</Run>
+                </TextBlock>
+
+                <TextBlock>
+                    <Run Foreground="White">Elenco:</Run>
+                    <Run>Bryan Cranston, Aaron Paul, Anna Gunn,</Run>
+                    <Run FontStyle="Oblique">más...</Run>
+                </TextBlock>
+                
+                <TextBlock>
+                     <Run Foreground="White">Género:</Run>
+                     <Run>Drama, Criminal, Suspenso</Run>
+                </TextBlock>
+
+                <TextBlock>
+                     <Run Foreground="White">Clasificación:</Run>
+                     <Run>TV-MA</Run>
+                     <Run FontStyle="Oblique">sangre, lenguaje fuerte, drogas, violencia</Run>
+                </TextBlock>
+
+            </StackPanel>
+        </UniformGrid>
+        
+        <StackPanel Height="35" DockPanel.Dock="Top" Orientation="Horizontal">
+
+                
+                <Button Padding="5" FontSize="16" Background="#0D3E10" Foreground="White"
+                        Content="+ Temporada" Command="{Binding CambiarVistaCommand}" CommandParameter="{x:Static viewmodels:Vistas.AgregarTemporada}">
+         
+                </Button>
+
+                <Button Padding="5" FontSize="16" Background="#0D3E10" Foreground="White">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Content" Value="Editar temporada"></Setter>
+                            <Setter Property="Command" Value="{Binding CambiarVistaCommand}"></Setter>
+                            <Setter Property="CommandParameter" Value="{x:Static viewmodels:Vistas.EditarTemporada}"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=lstTemporadas, Path=SelectedIndex}" Value="-1">
+                                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button Padding="5" FontSize="16" Background="#0D3E10" Foreground="White">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Content" Value="Eliminar temporada"></Setter>
+                            <Setter Property="Command" Value="{Binding CambiarVistaCommand}"></Setter>
+                            <Setter Property="CommandParameter" Value="{x:Static viewmodels:Vistas.EliminarTemporada}"></Setter>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=lstTemporadas, Path=SelectedIndex}" Value="-1">
+                                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button Padding="5" FontSize="16" HorizontalAlignment="Right" Background="#0D3E10" Foreground="White">
+                
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Content" Value="Mostrar episodios..."></Setter>
+                            <Setter Property="Command" Value="{Binding CambiarVistaCommand}"></Setter>
+                            <Setter Property="CommandParameter" Value="{x:Static viewmodels:Vistas.ListaEpisodios}"></Setter>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=lstTemporadas, Path=SelectedIndex}" Value="-1">
+                                    <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+            </Button>
+            
+        </StackPanel>
+
+
+            <ListBox Name="lstTemporadas" BorderThickness="0,1,0,0" BorderBrush="Black"  Background="Transparent" 
+                     ItemsSource="{Binding Temporadas}" ItemTemplate="{StaticResource TemporadaTemplate}" SelectedItem="{Binding TemporadaAct}">
+            </ListBox>
+      
+        
+    </DockPanel>
+    </ScrollViewer>
+</UserControl>
